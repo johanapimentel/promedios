@@ -35,6 +35,21 @@ let resultado = document.getElementById("resultado");
 let resultadoAgregar = document.getElementById("listaAgregados");
 let mensaje = document.getElementById("mensaje");
 
+function ordenar(listaD) {
+    let listaO = listaD;
+    let paso = 0;
+    for(let i =0; i <= listaO.length; i++){
+        for(let j = 0; j < listaO.length; j++){
+            if(listaO[j] > listaO[j+1]){
+                paso = listaO[j];
+                listaO[j] = listaO[j+1];
+                listaO[j+1] = paso;
+            };
+        };    
+    };
+    return listaO;    
+}
+
 function promedio(lista, mostrar) {
   let suma = 0;
   for (let i = 0; lista.length > i; i++) {
@@ -44,14 +59,26 @@ function promedio(lista, mostrar) {
   mostrar.innerHTML = "El promedio es: " + suma;
 }
 
-function moda(lista, mostrar) {
-  let suma = lista.reduce(function (acumulado = 0, elemento) {
-    return acumulado + elemento;
-  });
+function mediana(lista, mostrar) {
+  let posicion = 0;
+  // let suma = lista.reduce(function (acumulado = 0, elemento) {
+  // return acumulado + elemento;
+  //});
+  let listaO = ordenar(lista);
+  let suma = listaO.length;
+  if (suma % 2 == 0) {
+    let listaF = []; 
+    listaF.push(listaO[listaO.length / 2]);
+    listaF.push((listaO[listaO.length / 2]) - 1);
+    promedio(listaF, mostrar);
+  } else {
+    posicion = Math.floor(listaO.length / 2);
+    mostrar.innerHTML = "La mediana es de: " + listaO[posicion];
+  };
 }
 
-function mediana(lista, mostrar) {
-  console.log("Mediana");
+function moda(lista, mostrar) {
+  console.log("Moda");
 }
 
 function agregarNumLista() {
@@ -59,7 +86,6 @@ function agregarNumLista() {
   let num = parseInt(limpiar.value);
   if (num > 0) {
     mensaje.innerText = "Lista de numeros para sacar promedios";
-    console.log(num);
     listaAgregados.push(parseInt(num));
     num = "<li>" + num + "</li>";
     resultadoAgregar.innerHTML = resultadoAgregar.innerHTML + num;

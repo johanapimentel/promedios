@@ -1,4 +1,19 @@
-body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #444;
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #444;
+}
+.main{
+    display: table;
+    width: 100%;
+}
+.main > aside,
+.main > section{
+    border-radius: 10px;
+    border: 1px solid green;
+    padding: 10px;
+    margin: 5px;
+}
+#alerta {
+    color: red;
+    font-size: 0.7em;
 }

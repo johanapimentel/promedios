@@ -1,0 +1,2 @@
+# promedios
+Calcular media aritmetica

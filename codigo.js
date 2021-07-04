@@ -36,18 +36,18 @@ let resultadoAgregar = document.getElementById("listaAgregados");
 let mensaje = document.getElementById("mensaje");
 
 function ordenar(listaD) {
-    let listaO = listaD;
-    let paso = 0;
-    for(let i =0; i <= listaO.length; i++){
-        for(let j = 0; j < listaO.length; j++){
-            if(listaO[j] > listaO[j+1]){
-                paso = listaO[j];
-                listaO[j] = listaO[j+1];
-                listaO[j+1] = paso;
-            };
-        };    
-    };
-    return listaO;    
+  let listaO = listaD;
+  let paso = 0;
+  for (let i = 0; i <= listaO.length; i++) {
+    for (let j = 0; j < listaO.length; j++) {
+      if (listaO[j] > listaO[j + 1]) {
+        paso = listaO[j];
+        listaO[j] = listaO[j + 1];
+        listaO[j + 1] = paso;
+      }
+    }
+  }
+  return listaO;
 }
 
 function promedio(lista, mostrar) {
@@ -67,14 +67,15 @@ function mediana(lista, mostrar) {
   let listaO = ordenar(lista);
   let suma = listaO.length;
   if (suma % 2 == 0) {
-    let listaF = []; 
-    listaF.push(listaO[listaO.length / 2]);
-    listaF.push((listaO[listaO.length / 2]) - 1);
+    let listaF = [];
+    let mitad = listaO.length / 2;
+    listaF.push(listaO[mitad]);
+    listaF.push(listaO[mitad - 1]);
     promedio(listaF, mostrar);
   } else {
     posicion = Math.floor(listaO.length / 2);
     mostrar.innerHTML = "La mediana es de: " + listaO[posicion];
-  };
+  }
 }
 
 function moda(lista, mostrar) {
